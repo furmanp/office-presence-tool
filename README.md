@@ -13,6 +13,6 @@ Ms Excel Spreadsheet with macros that help to easily share working status for ch
 
 ![alt text](https://github.com/przfur/KOW_Sender/blob/main/Assets/KOW.png "Main Sheet")
 
-
+Excel Spreadsheet is available in Assets folder.
 
 
