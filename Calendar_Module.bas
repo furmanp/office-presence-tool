@@ -80,14 +80,11 @@ End Sub
 Private Sub CreateCustomCategory(oCategoryName As String)
     Dim objNameSpace As Namespace
     Dim objCategory As Category
-
-    ' Obtain a NameSpace object reference.
-    Set objNameSpace = Outlook.Application.GetNamespace("MAPI")
-     
-    ' Check if the Categories collection for the Namespace
-    ' contains one or more Category objects.
-    For Each objCategory In objNameSpace.Categories                                 'If category exists, update its color only and exit Sub
-        If objCategory.Name = oCategoryName Then
+    
+    Set objNameSpace = Outlook.Application.GetNamespace("MAPI")                     ' Obtain a NameSpace object reference.
+                                                                                    ' Check if the Categories collection for the Namespace
+    For Each objCategory In objNameSpace.Categories                                 ' contains one or more Category objects.
+        If objCategory.Name = oCategoryName Then                                    'If category exists, update its color only and exit Sub
             objCategory.Color = CategoryColor(Worksheets("Setup").Cells(6, 3))
             Exit Sub
         End If
@@ -96,8 +93,7 @@ Private Sub CreateCustomCategory(oCategoryName As String)
     Set objCategory = objNameSpace.Categories.Add(oCategoryName)                    'If category doesn't exist, create it and give it a color
     objCategory.Color = CategoryColor(Worksheets("Setup").Cells(6, 3))
     
-    ' Clean up.
-    Set objCategory = Nothing
+    Set objCategory = Nothing                                                       ' Clean up.
     Set objNameSpace = Nothing
 End Sub
 
