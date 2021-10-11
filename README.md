@@ -11,7 +11,7 @@ Ms Excel Spreadsheet with macros that help to easily share working status for ch
 * Triggering Out of Office Status when entered Off/Sick/Holidays,
 * Sharing Only Updates / Only Appointments / Both available.
 
-![alt text](https://github.com/przfur/KOW_Sender/blob/main/Assets/KOW.png "Main Sheet")
+  ![alt text](https://github.com/przfur/KOW_Sender/blob/main/Assets/KOW.png "Main Sheet")
 
 Excel Spreadsheet is available in Assets folder.
 
