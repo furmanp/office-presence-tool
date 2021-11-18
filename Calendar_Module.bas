@@ -107,7 +107,7 @@ Private Function GetDayFromWeekNumber(InYear As Long, WeekNumber As Long, Option
     GetDayFromWeekNumber = DateAdd("ww", WeekNumber - 1, DateSerial(InYear, 1, i))
 End Function
 
-Private Function CheckBusyStatus(statusKeyword As String) As Boolean
+Function CheckBusyStatus(statusKeyword As String) As Boolean
     
     CheckBusyStatus = False
     

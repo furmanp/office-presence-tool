@@ -3,7 +3,7 @@ Attribute VB_Name = "Main_Module"
 
 Option Explicit
 
-Sub Main()
+Sub main()
     
     Dim weekNum&, yearNum&
     
@@ -18,19 +18,21 @@ Sub Main()
     If IsEmpty(Cells(2, 6)) Then                                                'check if Year is set for Default of Custom
         yearNum = Year(Date)
     Else
-        yearNum = CInt(Cells(2, 6))
+        yearNum = CInt(Cells(2, 7))
     End If
 '=======================================================================================================================================
     Select Case Worksheets("Sender").Cells(8, 3)                                'Execute set of methods based on user choice
         Case "KOW + Calendar"                                                   'KOW Only / KOW + Calendar / Calendar Only
             Call Mail_KOW(weekNum)
             Call SetOfficePresence(weekNum, yearNum)
-            
+              
         Case "KOW Only"
             Call Mail_KOW(weekNum)
             
         Case "Calendar Only"
             Call SetOfficePresence(weekNum, yearNum)
+        Case "Focus"
+            Call Update_Focus(weekNum)
         
     End Select
 End Sub
