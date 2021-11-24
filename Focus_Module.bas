@@ -4,19 +4,28 @@ Sub Update_Focus(weekNum As Long)
 
     Dim focus_wb As Workbook
     Dim kow_wb As Workbook
-    Dim user As String
+    Dim user As String, path As String
     Dim column As Variant, row As Variant
     Dim rng_start As Range
     Dim i As Integer
+    Dim docs As Variant
     
+    docs = Array("Documents", "Documenten", "Dokumenty")
     user = Environ("Username")
+    
     Application.ScreenUpdating = False
-    
     Set kow_wb = ThisWorkbook
-    'Set focus_wb = Workbooks.Open("C:\Users\" + user + "\Pontis\Pontis General - Dokumenty\General\01 Office\Focus.xlsx", Editable:=True)
-    Set focus_wb = Workbooks.Open("C:\Users\Przemek\Desktop\Focus.xlsx", Editable:=True)
-    focus_wb.Sheets("Office presence").Activate
     
+    For i = 0 To UBound(docs)
+        On Error Resume Next
+        path = "C:\Users\" + user + "\Pontis\Pontis General - " + docs(i) + "\General\01 Office\Focus.xlsx"
+        Set focus_wb = Workbooks.Open(path, Editable:=True)
+        On Error GoTo 0
+    Next i
+    
+On Error GoTo WrongPath:
+    
+    focus_wb.Sheets("Office presence").Activate
     column = xls_look_(weekNum, vAddress)
     column = Split(column, "$", -1)
     row = xls_look_(kow_wb.Sheets("Setup").Cells(10, 3), vAddress)
@@ -42,10 +51,12 @@ Sub Update_Focus(weekNum As Long)
         End If
     Next i
     
-    focus_wb.Save 'niepotrzebne przy sharepoint
+    focus_wb.Save
     focus_wb.Close
     Application.ScreenUpdating = True
 
+WrongPath:
+    MsgBox ("FOCUS Spreadhseet could not be found." + vbNewLine + "Synchronize Pontis General")
 End Sub
 
 
